@@ -1,0 +1,132 @@
+version: 1
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:43.825
+dn: ou=developer,ou=groups,dc=sb-demo,dc=ca
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: Research & Development Group
+uniqueMember: uid=ben,ou=people,dc=sb-demo,dc=ca
+uniqueMember: uid=bob,ou=people,dc=sb-demo,dc=ca
+ou: developer
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:43.854
+dn: ou=admin,ou=groups,dc=sb-demo,dc=ca
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: Admin Group
+uniqueMember: uid=ben,ou=people,dc=sb-demo,dc=ca
+uniqueMember: uid=jerry,ou=people,dc=sb-demo,dc=ca
+ou: admin
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:43.881
+dn: ou=groups,dc=sb-demo,dc=ca
+objectclass: organizationalUnit
+objectclass: top
+ou: groups
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:43.906
+dn: uid=slashguy,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: slash/guy
+sn: /Slash
+description: Guy with slash / in his name!
+displayName: /Slash
+uid: slashguy
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:43.933
+dn: uid=jerry,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Mouse, Jerry
+sn: Mouse
+description: The famous mouse who fights Tom!
+displayName: Not Tom! Jerry!
+uid: jerry
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:43.959
+dn: dc=sb-demo,dc=ca
+objectclass: top
+objectclass: domain
+dc: sb-demo
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:43.996
+dn: uid=bob,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Bob Hamilton
+sn: Hamilton
+description: This is Bob, who builds it all!
+displayName: Bob the Builder of it all.
+uid: bob
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:44.019
+dn: ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalUnit
+objectclass: top
+ou: people
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:44.053
+dn: ou=manager,ou=groups,dc=sb-demo,dc=ca
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: Manager Group
+uniqueMember: uid=ben,ou=people,dc=sb-demo,dc=ca
+ou: manager
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:44.083
+dn: uid=ben,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Ben Alex
+sn: Alex
+description: This is Ben, who is a pilot!
+displayName: Ben the Flying Fan
+uid: ben
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+#!RESULT OK
+#!CONNECTION ldap://localhost:10389
+#!DATE 2019-03-17T16:07:44.122
+dn: uid=mike,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Mike Schmike
+sn: Schmike
+description: This is Mike, who likes to hike!
+displayName: Miker-Hiker.
+uid: smike
+userPassword: secret

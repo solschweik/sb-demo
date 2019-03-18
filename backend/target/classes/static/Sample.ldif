@@ -1,0 +1,99 @@
+version: 1
+
+dn: ou=developer,ou=groups,dc=sb-demo,dc=ca
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: Research & Development Group
+uniqueMember: uid=ben,ou=people,dc=sb-demo,dc=ca
+uniqueMember: uid=bob,ou=people,dc=sb-demo,dc=ca
+ou: developer
+
+dn: ou=admin,ou=groups,dc=sb-demo,dc=ca
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: Admin Group
+uniqueMember: uid=ben,ou=people,dc=sb-demo,dc=ca
+uniqueMember: uid=jerry,ou=people,dc=sb-demo,dc=ca
+ou: admin
+
+dn: ou=groups,dc=sb-demo,dc=ca
+objectclass: organizationalUnit
+objectclass: top
+ou: groups
+
+dn: uid=slashguy,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: slash/guy
+sn: /Slash
+description: Guy with slash / in his name!
+displayName: /Slash
+uid: slashguy
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+dn: uid=jerry,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Mouse, Jerry
+sn: Mouse
+description: The famous mouse who fights Tom!
+displayName: Not Tom! Jerry!
+uid: jerry
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+dn: dc=sb-demo,dc=ca
+objectclass: top
+objectclass: domain
+dc: sb-demo
+
+dn: uid=bob,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Bob Hamilton
+sn: Hamilton
+description: This is Bob, who builds it all!
+displayName: Bob the Builder of it all.
+uid: bob
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+dn: ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalUnit
+objectclass: top
+ou: people
+
+dn: ou=manager,ou=groups,dc=sb-demo,dc=ca
+objectclass: groupOfUniqueNames
+objectclass: top
+cn: Manager Group
+uniqueMember: uid=ben,ou=people,dc=sb-demo,dc=ca
+ou: manager
+
+dn: uid=ben,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Ben Alex
+sn: Alex
+description: This is Ben, who is a pilot!
+displayName: Ben the Flying Fan
+uid: ben
+userPassword: {SSHA}d3niwIQy//JdEPKj2a7UcsfBcyZiuLHp9xl/oQ==
+
+dn: uid=mike,ou=people,dc=sb-demo,dc=ca
+objectclass: organizationalPerson
+objectclass: person
+objectclass: inetOrgPerson
+objectclass: top
+cn: Mike Schmike
+sn: Schmike
+description: This is Mike, who likes to hike!
+displayName: Miker-Hiker.
+uid: smike
+userPassword:secret
