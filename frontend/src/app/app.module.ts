@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffects} from './auth/state/effects/auth.effects';
+import {NavigationEffects} from './state/effects/navigation.effects';
 
 @NgModule({
   declarations: [
@@ -10,7 +13,8 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    EffectsModule.forRoot([NavigationEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

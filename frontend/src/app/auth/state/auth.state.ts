@@ -23,7 +23,7 @@ export function authReducer(state = initState, action: Action) {
         user: createUser((action as LoginSuccess).jwt)
       };
     case LOGOUT_SUCCESS:
-      return {... initState, errors: (action as LogoutSuccess).msg};
+      return {... initState, errors: (action as LogoutSuccess).messages};
     default:
       return {... initState};
   }

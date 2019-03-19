@@ -29,6 +29,10 @@ export class UserService {
     return this.user;
   }
 
+  set currentUser(user: AppUserInfo) {
+    this.user = user;
+  }
+
   login(uname: string, pwd: string): Observable<string> {
     return this.http.post('http://localhost:8080/logmein',
       JSON.stringify({

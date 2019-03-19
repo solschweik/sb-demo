@@ -6,13 +6,16 @@ import {RouterModule} from '@angular/router';
 import {UserService} from './user.service';
 import {AuthGuard} from './auth.guard';
 import {LoginGuard} from './login.guard';
+import {EffectsModule} from '@ngrx/effects';
+import {AuthEffects} from './state/effects/auth.effects';
 
 @NgModule({
   declarations: [LoginComponent],
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule.forChild([])
+    RouterModule.forChild([]),
+    EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     UserService, AuthGuard, LoginGuard
