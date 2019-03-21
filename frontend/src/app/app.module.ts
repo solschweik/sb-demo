@@ -4,8 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from './auth/state/effects/auth.effects';
 import {NavigationEffects} from './state/effects/navigation.effects';
+import {AuthModule} from './auth/auth.module';
+import {HomeModule} from './home/home.module';
+import {StoreModule} from '@ngrx/store';
+import {appStateReducers} from './state/app.state';
+import {AuthEffects} from './auth/state/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -14,7 +18,10 @@ import {NavigationEffects} from './state/effects/navigation.effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    EffectsModule.forRoot([NavigationEffects])
+    StoreModule.forRoot(appStateReducers, {}),
+    EffectsModule.forRoot([AuthEffects, NavigationEffects]),
+    AuthModule,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

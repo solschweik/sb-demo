@@ -8,7 +8,7 @@
       <label for="password" class="sr-only">Username</label>
       <input #pwd type="password" id="password" name="password" class="form-control" placeholder="Password" required>
     </p>
-    <button class="btn btn-lg btn-primary btn-block" (click)="login(un.value, pwd.value)">Login</button>
-    <button class="btn btn-lg btn-primary btn-block" (click)="logout()">Logout</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="login(un.value, pwd.value)" *ngIf="!svc.currentUser">Login</button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="logout()" *ngIf="svc.currentUser">Logout</button>
   </form>
 </div>

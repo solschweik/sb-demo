@@ -15,7 +15,7 @@ import {AuthEffects} from './state/effects/auth.effects';
     CommonModule,
     HttpClientModule,
     RouterModule.forChild([]),
-    EffectsModule.forRoot([AuthEffects])
+    // EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
     UserService, AuthGuard, LoginGuard
