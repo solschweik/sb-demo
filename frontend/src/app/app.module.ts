@@ -10,6 +10,7 @@ import {HomeModule} from './home/home.module';
 import {StoreModule} from '@ngrx/store';
 import {appStateReducers} from './state/app.state';
 import {AuthEffects} from './auth/state/effects/auth.effects';
+import {UserDataEffects} from './state/effects/user-data.effects';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import {AuthEffects} from './auth/state/effects/auth.effects';
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(appStateReducers, {}),
-    EffectsModule.forRoot([AuthEffects, NavigationEffects]),
+    EffectsModule.forRoot([AuthEffects, NavigationEffects, UserDataEffects]),
     AuthModule,
     HomeModule
   ],

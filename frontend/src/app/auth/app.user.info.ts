@@ -14,4 +14,8 @@ export class AppUserInfo {
   get userName(): string {
     return _.get(this.jwt, 'payloadObj.name');
   }
+
+  get displayName(): string {
+    return _.get(this.jwt, 'payloadObj.displayName');
+  }
 }

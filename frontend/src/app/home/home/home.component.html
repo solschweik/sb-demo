@@ -1,3 +1,9 @@
-<p>
-  home works!
-</p>
+<div class="row">
+  <div class="col-3">{{msg}}</div>
+
+  <div class="offset-1 col-2">
+    <button class="btn btn-lg btn-primary btn-block" (click)="logout()">
+      Logout {{usrSvc.currentUser.userId}}
+    </button>
+  </div>
+</div>

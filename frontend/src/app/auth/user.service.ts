@@ -53,4 +53,16 @@ export class UserService {
       }
     }).pipe(map(() => this.currentToken));
   }
+
+  getUserData(p?: any): Observable<any> {
+    console.log(`getUserData with payload: ${JSON.stringify(p)}`);
+    return this.http.get('http://localhost:8080/api?', {
+      headers: {
+        Authorization: `Bearer ${this.currentToken}`
+      },
+      params: {
+        name: this.currentUser && this.currentUser.userId || 'Unknown'
+      }
+    }).pipe(map(r => _.get<any, string, string>(r, ['res'], 'Unknown')));
+  }
 }
