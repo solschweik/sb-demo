@@ -32,7 +32,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		PasswordEncoder enc = new Pbkdf2PasswordEncoder();
 		((Pbkdf2PasswordEncoder) enc).setAlgorithm(SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
-		enc = new LdapShaPasswordEncoder();
+//		enc = new LdapShaPasswordEncoder();
+		enc = new CryptEncoder();
 //		enc = new DelegatingPasswordEncoder();
 		auth.ldapAuthentication().userDnPatterns("uid={0},ou=people").groupSearchBase("ou=groups").contextSource()
 				.url("ldap://localhost:10389/dc=sb-demo,dc=ca").and().passwordCompare().passwordEncoder(enc)
