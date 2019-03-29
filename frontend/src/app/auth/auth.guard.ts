@@ -2,18 +2,17 @@ import {ActivatedRouteSnapshot, CanActivate, CanLoad, Route, Router, RouterState
 import {Observable} from 'rxjs';
 import {forwardRef, Inject} from '@angular/core';
 import {UserService} from './user.service';
+import {AuthService} from './auth.service';
 
 export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     @Inject(forwardRef(() => Router)) private router: Router,
-    @Inject(forwardRef(() => UserService)) private usrSvc: UserService) {}
+    @Inject(forwardRef(() => UserService)) private usrSvc: UserService,
+    @Inject(forwardRef( () => AuthService)) private authSvc: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.usrSvc.currentUser) {
-      return true;
-    }
-    this.router.navigateByUrl('/login');
+    return this.authSvc.isUriAllowedA(state.url);
   }
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {

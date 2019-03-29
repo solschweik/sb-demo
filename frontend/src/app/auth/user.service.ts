@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {AppUserInfo} from './app.user.info';
 import {HttpClient} from '@angular/common/http';
 import {CURRENT_USER_KEY} from '../utils';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, of} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 import * as _ from 'lodash';
 import {createUser} from './state/auth.state';
 
@@ -14,15 +14,21 @@ export class UserService {
   private user: AppUserInfo;
 
   constructor(private http: HttpClient) {
-    const jwtStr = this.currentToken;
-    if (jwtStr) {
-      this.validateUser().subscribe(() => createUser(jwtStr), () => this.logout());
-    }
   }
 
   // noinspection JSMethodCanBeStatic
   get currentToken() {
     return sessionStorage.getItem(CURRENT_USER_KEY);
+  }
+
+  get currentUserA(): Promise<AppUserInfo> {
+    return this.user
+      ? of(this.user).toPromise()
+      : this.validateUser().pipe(
+        map(jwt => this.user = createUser(jwt)),
+      catchError(err => {
+        return of(null).toPromise();
+      })).toPromise();
   }
 
   get currentUser(): AppUserInfo {

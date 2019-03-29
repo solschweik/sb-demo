@@ -4,6 +4,8 @@ import {UserService} from '../../auth/user.service';
 import {Observable} from 'rxjs';
 import {LOAD_USER_DATA, LoadUserData, LoadUserDataSuccess, LoadUserDataFailure} from '../user.actions';
 import {catchError, concatMap, switchMap} from 'rxjs/operators';
+import {Logout} from '../../auth/state/auth.actions';
+import {Action} from '@ngrx/store';
 
 @Injectable()
 export class UserDataEffects {
@@ -18,7 +20,13 @@ export class UserDataEffects {
       concatMap(d => [new LoadUserDataSuccess(d)]),
       catchError(err => {
         console.error(`Failed Loading User Data: ${JSON.stringify(err)}`);
-        return [new LoadUserDataFailure()];
+        const res: Action[] = [];
+        if (err.status === 401) {
+          res.push(new Logout());
+        } else {
+          res.push(new LoadUserDataFailure());
+        }
+        return res;
       })
     ))
   );

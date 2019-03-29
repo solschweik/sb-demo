@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {UserService} from './user.service';
 import * as _ from 'lodash';
+import {AppUserInfo} from './app.user.info';
 
 export enum AuthResourceType {
   APPLICATION, PAGE, DROP_DOWN, BUTTON, LINK, MENU, MENU_ITEM, COMPONENT
@@ -38,7 +39,7 @@ export class AuthService {
         uri: ['/eap1/admin'],
         userRoles: ['ROLE_EAP1_ADMIN']
       }, {
-        uri: ['/eap1/user'],
+        uri: ['/eap1/user', '/eap1'],
         userRoles: ['ROLE_EAP1_ADMIN', 'ROLE_EAP1_USER']
       }]
     }
@@ -47,26 +48,33 @@ export class AuthService {
   constructor(private usrSvc: UserService) {
   }
 
+  async isUriAllowedA(uri: string): Promise<boolean> {
+    const cusr: AppUserInfo = await this.usrSvc.currentUserA;
+    const res = this.isUriAllowed(uri);
+    console.log(`isUriAllowed: ${uri}: ${res} for user: ${cusr}`);
+    return res;
+  }
+
   isUriAllowed(uri: string): boolean {
     if (!this.usrSvc.currentUser) {
       return false;
     }
     const userRoles: string[] = this.usrSvc.currentUser.roles;
     const findApplicationConfig = _.memoize((currentUri: string) => {
-      const appId = uri.startsWith('/') ? uri.split('/')[1] : uri.split('/')[0];
+      const appId = currentUri.startsWith('/') ? currentUri.split('/')[1] : currentUri.split('/')[0];
       const app = this.config.find(v => v.applicationId === appId);
       return app || this.config.find(v => v.applicationId === ANY_APPLICATION);
     });
-    const findPermissions = _.memoize((roles: string[]) => {
-      const app = findApplicationConfig(uri);
+    const findPermissions = _.memoize((roles: string[], currentUri: string) => {
+      const app = findApplicationConfig(currentUri);
       return app.permissions.filter(p => {
-        if (p.userRoles.length === 1 && p.userRoles[1] === ANY_ROLE) {
+        if (p.userRoles.length === 1 && p.userRoles[0] === ANY_ROLE) {
           return true;
         }
-        return _.intersection(userRoles, p.userRoles).length;
+        return _.intersection(roles, p.userRoles).length;
       });
     });
-    const foundPermissions: AuthResource[] = findPermissions(userRoles);
+    const foundPermissions: AuthResource[] = findPermissions(userRoles, uri);
     const uris: string[] =
       _.reduce(foundPermissions, (acc, v) => acc.concat(v.uri), [])
         .filter(u => u === uri);

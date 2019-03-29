@@ -3,7 +3,7 @@
 
   <div class="offset-1 col-2">
     <button class="btn btn-lg btn-primary btn-block" (click)="logout()">
-      Logout {{usrSvc.currentUser.userId}}
+      Logout {{userId}}
     </button>
     <button class="btn btn-lg btn-primary btn-block" (click)="goto('/eap1/admin')" *ngIf="isUriAllowed('/eap1/admin')">
       Go to EAP 1 Admin
