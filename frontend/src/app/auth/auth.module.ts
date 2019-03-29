@@ -8,6 +8,7 @@ import {AuthGuard} from './auth.guard';
 import {LoginGuard} from './login.guard';
 import {EffectsModule} from '@ngrx/effects';
 import {AuthEffects} from './state/effects/auth.effects';
+import {AuthService} from './auth.service';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -18,7 +19,7 @@ import {AuthEffects} from './state/effects/auth.effects';
     // EffectsModule.forRoot([AuthEffects])
   ],
   providers: [
-    UserService, AuthGuard, LoginGuard
+    UserService, AuthGuard, LoginGuard, AuthService
   ]
 })
 export class AuthModule { }

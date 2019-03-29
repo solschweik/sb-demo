@@ -18,7 +18,7 @@ export class NavigationEffects {
     ofType(NAVIGATE_TO),
     tap((action: NavigateTo) => {
       const url: string = _.isArray(action.payload.path) ? action.payload.path.join('/') : action.payload.path;
-      console.log(`Navigating to ${url}, routes: ${JSON.stringify(this.router.config)}`);
+      console.log(`Navigating to ${url}, routes: ${this.router.config}`);
       this.router.navigateByUrl(url, action.payload.extras);
     })
   );

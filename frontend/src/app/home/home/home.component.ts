@@ -8,6 +8,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Logout} from '../../auth/state/auth.actions';
 import {UserService} from '../../auth/user.service';
+import {NavigateTo} from '../../state/navigation.actions';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +20,8 @@ export class HomeComponent implements OnInit {
   msg: string;
 
   constructor(private router: Router, public usrSvc: UserService,
-              private svc: UserSelectorService, private store: Store<UserDataState>) {
+              private svc: UserSelectorService, private store: Store<UserDataState>,
+              private authSvc: AuthService) {
     this.store.dispatch(new LoadUserData());
     this.store.pipe(select(this.svc.getUserData()))
       .subscribe(m => this.msg = _.get(m, 'data'),
@@ -41,5 +44,18 @@ export class HomeComponent implements OnInit {
   logout() {
     this.store.dispatch(new Logout());
     return false;
+  }
+
+  goto(uri: string) {
+    this.store.dispatch(new NavigateTo({path: uri}));
+    return false;
+  }
+
+  get userId(): string {
+    return _.get(this.usrSvc, 'currentUser.userId');
+  }
+
+  isUriAllowed(uri: string): boolean {
+    return this.authSvc.isUriAllowed(uri);
   }
 }

@@ -5,5 +5,14 @@
     <button class="btn btn-lg btn-primary btn-block" (click)="logout()">
       Logout {{usrSvc.currentUser.userId}}
     </button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="goto('/eap1/admin')" *ngIf="isUriAllowed('/eap1/admin')">
+      Go to EAP 1 Admin
+    </button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="goto('/eap1/user')">
+      Go to EAP 1 User
+    </button>
+    <button class="btn btn-lg btn-primary btn-block" (click)="goto('/eap1')">
+      Go to EAP 1 Container
+    </button>
   </div>
 </div>
