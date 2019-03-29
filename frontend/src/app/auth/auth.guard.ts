@@ -8,11 +8,17 @@ export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     @Inject(forwardRef(() => Router)) private router: Router,
     @Inject(forwardRef(() => UserService)) private usrSvc: UserService,
-    @Inject(forwardRef( () => AuthService)) private authSvc: AuthService) {}
+    @Inject(forwardRef(() => AuthService)) private authSvc: AuthService) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authSvc.isUriAllowedA(state.url);
+    return this.authSvc.isUriAllowedA(state.url).then(v => {
+      if (!v) {
+        this.router.navigateByUrl(this.usrSvc.currentUser ? '/home' : '/login');
+      }
+      return v;
+    });
   }
 
   canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
