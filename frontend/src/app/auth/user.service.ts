@@ -6,6 +6,7 @@ import {Observable, of} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import * as _ from 'lodash';
 import {createUser} from './state/auth.state';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {createUser} from './state/auth.state';
 export class UserService {
   private user: AppUserInfo;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private jwtSvc: JwtHelperService) {
   }
 
   // noinspection JSMethodCanBeStatic
@@ -25,7 +26,7 @@ export class UserService {
     return this.user
       ? of(this.user).toPromise()
       : this.validateUser().pipe(
-        map(jwt => this.user = createUser(jwt)),
+        map(jwt => this.user = createUser(jwt, this.jwtSvc)),
       catchError(err => {
         return of(null).toPromise();
       })).toPromise();

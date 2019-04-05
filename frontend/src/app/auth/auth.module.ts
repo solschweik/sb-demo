@@ -6,9 +6,13 @@ import {RouterModule} from '@angular/router';
 import {UserService} from './user.service';
 import {AuthGuard} from './auth.guard';
 import {LoginGuard} from './login.guard';
-import {EffectsModule} from '@ngrx/effects';
-import {AuthEffects} from './state/effects/auth.effects';
 import {AuthService} from './auth.service';
+import {JwtModule} from '@auth0/angular-jwt';
+import {CURRENT_USER_KEY} from '../utils';
+
+export function getToken(): string {
+  return sessionStorage.getItem(CURRENT_USER_KEY);
+}
 
 @NgModule({
   declarations: [LoginComponent],
@@ -16,7 +20,11 @@ import {AuthService} from './auth.service';
     CommonModule,
     HttpClientModule,
     RouterModule.forChild([]),
-    // EffectsModule.forRoot([AuthEffects])
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: getToken
+      }
+    })
   ],
   providers: [
     UserService, AuthGuard, LoginGuard, AuthService

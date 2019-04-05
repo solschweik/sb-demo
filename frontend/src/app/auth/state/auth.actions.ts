@@ -1,4 +1,5 @@
 import {Action} from '@ngrx/store';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 export const LOGIN_SUCCESS = '[Authentication] Login Success';
 export const LOGIN = '[Authentication] Login';
@@ -13,7 +14,7 @@ export class Login implements Action {
 
 export class LoginSuccess implements Action {
   readonly type = LOGIN_SUCCESS;
-  constructor(public jwt: string) {}
+  constructor(public jwt: string, public jwtSvc: JwtHelperService) {}
 }
 
 export class Logout implements Action {

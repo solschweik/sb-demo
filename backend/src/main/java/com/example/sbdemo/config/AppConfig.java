@@ -13,7 +13,7 @@ public class AppConfig implements WebMvcConfigurer {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new JwtValidatorInterceptor())
 		.excludePathPatterns("/logmein/**", 
-				"/index.html", "/styles**.css", "/runtime**.js", "/**polyfills**.js", "/main**.js", "/3rdpartylicenses.txt", "/favicon.ico");
+				"/index.html", "/styles**.css", "/runtime**.js", "/**polyfills**.js", "/main**.js", "/3rdpartylicenses.txt", "/favicon.ico", "/**.js");
 	}
 
 }

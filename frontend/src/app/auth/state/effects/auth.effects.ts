@@ -8,20 +8,22 @@ import {createUser} from '../auth.state';
 import {Login, LOGIN, LoginSuccess, LOGOUT, Logout, LogoutSuccess, VALIDATE_TOKEN} from '../auth.actions';
 import {NavigateTo} from '../../../state/navigation.actions';
 import * as _ from 'lodash';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthEffects {
   constructor(@Inject(forwardRef(() => Actions)) private actions: Actions,
-              private svc: UserService) {
+              private svc: UserService,
+              private jwtSvc: JwtHelperService) {
   }
 
   @Effect()
   validateTokenEffect: Observable<Action> = this.actions.pipe(
     ofType(VALIDATE_TOKEN),
     concatMap((jwtStr: string) => {
-      this.svc.currentUser = createUser(jwtStr);
+      this.svc.currentUser = createUser(jwtStr, this.jwtSvc);
       return [
-        new LoginSuccess(jwtStr),
+        new LoginSuccess(jwtStr, this.jwtSvc),
         new NavigateTo({path: '/home'})
       ];
     }),
@@ -35,7 +37,7 @@ export class AuthEffects {
     ofType(LOGIN),
     switchMap((action: Login) => this.svc.login(action.username, action.pwd).pipe(
       concatMap((jwtStr: string) => {
-        this.svc.currentUser = createUser(jwtStr);
+        this.svc.currentUser = createUser(jwtStr, this.jwtSvc);
         return [new NavigateTo({path: '/home'})];
       }),
       catchError(err => {

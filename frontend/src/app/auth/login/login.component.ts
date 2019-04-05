@@ -11,7 +11,7 @@ import {Login, Logout} from '../state/auth.actions';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private svc: UserService, private store: Store<AppState>) { }
+  constructor(public svc: UserService, private store: Store<AppState>) { }
 
   ngOnInit() {
   }
