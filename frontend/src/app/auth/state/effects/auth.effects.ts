@@ -35,7 +35,17 @@ export class AuthEffects {
   @Effect()
   loginEffect: Observable<Action> = this.actions.pipe(
     ofType(LOGIN),
+    /* Turn on loading indicator
+    .tap(payload => this.indSvc.loading = true)
+     */
     switchMap((action: Login) => this.svc.login(action.username, action.pwd).pipe(
+      /* In case user clicks button twice...
+      .takeUntil(this.actions.pipe(ofType(CLICK_ACTION))
+      // In case user navigates away from the page while request is running...
+      .takeUntil(this.router.events)
+      // Turn off loading indicator
+      .tap(payload => this.indSvc.loading = false)
+       */
       concatMap((jwtStr: string) => {
         this.svc.currentUser = createUser(jwtStr, this.jwtSvc);
         return [new NavigateTo({path: '/home'})];
