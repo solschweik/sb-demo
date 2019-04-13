@@ -1,4 +1,73 @@
+.form-signin {
+  margin: 2em;
+}
+
 .login-block {
-  width: 35%;
-  margin: 5% auto 0;
+  width: 50%;
+  margin: 1% auto 0;;
+  background-image: url(https://www.scotiaonline.scotiabank.com/images/backgrounds/bg_signon.png);
+  background-origin: padding-box;
+  background-position-x: 0;
+  background-position-y: 100%;
+  background-size: auto;
+  border-bottom-color: rgb(215, 215, 215);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-image-repeat: stretch;
+  border-image-source: none;
+  border-image-width: 1;
+  border-left-color: rgb(215, 215, 215);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: rgb(215, 215, 215);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-color: rgb(215, 215, 215);
+  border-top-style: solid;
+  border-top-width: 1px;
+  color: rgb(0, 0, 0);
+  display: block;
+  font-family: Arial, Geneva, Tahoma, sans-serif;
+  padding: 1em;
+}
+
+div > form > .row {
+  line-height: 2.3em;
+}
+
+.login-btn {
+  background-image: -webkit-linear-gradient(top, rgb(221, 56, 35) 0px, rgb(142, 0, 0) 100%);
+}
+
+.login-input-lbl {
+  font-family: "Trebuchet MS", Tahoma, Arial, sans-serif;
+  color: rgb(102, 102, 102);
+  font-size: 1.3vw;
+  font-weight: 400;
+  vertical-align: baseline;
+  text-align: right;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.login-input {
+  border-bottom-color: rgb(153, 153, 153);
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left-color: rgb(153, 153, 153);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-right-color: rgb(153, 153, 153);
+  border-right-style: solid;
+  border-right-width: 1px;
+  border-top-color: rgb(153, 153, 153);
+  border-radius: 3px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  clear: none;
+  color: rgb(0, 0, 0);
+  cursor: text;
+  margin-left: 0;
+  padding-left: 0.5em;
+  line-height: 1vh;
 }

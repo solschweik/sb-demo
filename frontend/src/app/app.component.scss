@@ -1,0 +1,27 @@
+.bns-main-header {
+  background-image: url(https://www.scotiaonline.scotiabank.com/images/branding/scotiabank-group.gif);
+  background-repeat: no-repeat;
+  height: 28px;
+  margin-top: 15px;
+}
+
+.bns-main-header-strip {
+  background-image: -webkit-linear-gradient(top, rgb(221, 56, 35) 0px, rgb(142, 0, 0) 100%);
+  height: 28px;
+  margin: 15px 0 15px 0;
+}
+
+.bns-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: right;
+  height: 5vh;
+  border-top-width: 2px;
+  border-top-color: lightgrey;
+  border-top-style: outset;
+  background-color: rgb(245, 246, 252);
+  font-family: Frutiger-Roman sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+}

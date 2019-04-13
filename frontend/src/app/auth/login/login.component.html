@@ -1,14 +1,20 @@
 <div class="login-block">
   <form class="form-signin">
-    <p>
-      <label for="username" class="sr-only">Username</label>
-      <input #un type="text" id="username" name="username" class="form-control" placeholder="User Name" required autofocus>
-    </p>
-    <p>
-      <label for="password" class="sr-only">Username</label>
-      <input #pwd type="password" id="password" name="password" class="form-control" placeholder="Password" required>
-    </p>
-    <button class="btn btn-lg btn-primary btn-block" (click)="login(un.value, pwd.value)" *ngIf="!svc.currentUser">Login</button>
+    <div class="row">
+      <label for="username" class="col-2 login-input-lbl">Username:</label>
+      <span class="col-8">
+        <input #un type="text" id="username" name="username" class="login-input form-control" required autofocus>
+      </span>
+    </div>
+    <div class="row">
+      <label for="password" class="col-2 login-input-lbl">Password:</label>
+      <span class="col-8">
+        <input #pwd type="password" id="password" name="password" class="login-input form-control" required>
+      </span>
+    </div>
+    <div class="row">
+      <button class="btn btn-lg btn-primary btn-block login-btn offset-2 col-8" (click)="login(un.value, pwd.value)" *ngIf="!svc.currentUser">Sign In</button>
+    </div>
     <button class="btn btn-lg btn-primary btn-block" (click)="logout()" *ngIf="svc.currentUser">Logout</button>
   </form>
 </div>
