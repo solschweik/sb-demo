@@ -1,0 +1,7 @@
+Create network bridge:
+
+docker network create -d bridge --subnet 192.168.1.0/24 --gateway 192.168.1.222 mynet
+
+Build image 'config-server:latest' :
+
+docker build --file=Dockerfile.server --tag=config-server:latest --rm=true .
