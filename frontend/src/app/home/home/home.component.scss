@@ -1,0 +1,23 @@
+.list-group-item {
+  border: none;
+  padding-top: 2px;
+  padding-bottom: 0;
+}
+
+.list-group-item, .list-group {
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  background-color: rgb(248, 249, 250);
+}
+
+.bns-transition {
+  -webkit-transition: width 1s ease-in-out;
+  -moz-transition: width 1s ease-in-out;
+  -o-transition: width 1s ease-in-out;
+  transition: width 1s ease-in-out;
+}
+
+li > span:hover {
+  background-color: lightgrey;
+  font-style: italic;
+}
